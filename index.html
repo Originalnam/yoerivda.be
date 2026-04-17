@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoeri Van den Abbeele</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="site-name">yoerivda.be</span>
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>Yoeri Van den Abbeele</h1>
+      <p class="tagline">Data visualisation &amp; interactive simulations.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project-grid">
+        <a class="project-card" href="projects/port-analytics/">
+          <h3>Port Analytics</h3>
+          <p>Interactive maps and dashboards built on maritime vessel data. D3.js, GeoJSON.</p>
+          <span class="tag">D3.js</span>
+          <span class="tag">GeoJSON</span>
+        </a>
+        <a class="project-card project-card--wip" href="projects/ew-simulation/">
+          <h3>EW Simulation</h3>
+          <p>Electronic warfare scenario simulator. Work in progress.</p>
+          <span class="tag">Simulation</span>
+          <span class="tag">Coming soon</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        This site is a space for exploring data, visualisation, and simulation.
+        Projects are built with vanilla JS and D3.js; heavier computation runs
+        on a self-hosted Python backend when needed.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Yoeri Van den Abbeele</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
