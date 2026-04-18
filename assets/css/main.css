@@ -2,12 +2,14 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:        #0d0d0d;
-  --surface:   #141414;
-  --border:    #222;
-  --text:      #e0e0e0;
-  --muted:     #666;
-  --accent:    #4f8ef7;
+  --bg:        #0f172a;
+  --surface:   #1e293b;
+  --surface-2: #263348;
+  --border:    #334155;
+  --text:      #e2e8f0;
+  --muted:     #94a3b8;
+  --accent:    #38bdf8;
+  --accent-dim:#0ea5e9;
   --font:      'Inter', system-ui, -apple-system, sans-serif;
   --mono:      'JetBrains Mono', 'Fira Code', monospace;
   --max-width: 900px;
@@ -30,8 +32,9 @@ header {
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  background: var(--bg);
-  z-index: 10;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(10px);
+  z-index: 100;
 }
 
 nav {
@@ -47,7 +50,8 @@ nav {
   font-family: var(--mono);
   font-size: 0.9rem;
   color: var(--accent);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  text-decoration: none;
 }
 
 nav ul {
@@ -78,12 +82,12 @@ section { padding: 4rem 0; }
 section + section { border-top: 1px solid var(--border); }
 
 /* Hero */
-#hero { padding: 6rem 0 4rem; }
+#hero { padding: 7rem 0 4rem; }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
   line-height: 1.1;
 }
 
@@ -93,20 +97,107 @@ h1 {
   font-size: 1.1rem;
 }
 
+/* Accent line under hero name */
+h1 span {
+  display: inline;
+  background: linear-gradient(90deg, var(--accent), #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Section headings */
 h2 {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  margin-bottom: 2rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 1.75rem;
 }
 
 h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+/* Nav dropdown */
+.nav-dropdown { position: relative; }
+
+.nav-dropdown-trigger {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.nav-dropdown-trigger:hover { color: var(--text); }
+
+.nav-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+  display: inline-block;
+  color: var(--accent);
+}
+
+.nav-dropdown-trigger[aria-expanded="true"] .nav-arrow { transform: rotate(180deg); }
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  min-width: 180px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  list-style: none;
+  overflow: hidden;
+  z-index: 200;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.nav-dropdown-menu.open { display: block; }
+
+.nav-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  color: var(--text);
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s, color 0.12s;
+}
+
+.nav-dropdown-menu li:last-child a { border-bottom: none; }
+
+.nav-dropdown-menu a:hover {
+  background: var(--surface-2);
+  color: var(--accent);
+}
+
+.nav-dropdown-item--wip {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.wip-badge {
+  font-size: 0.6rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+  margin-left: 0.5rem;
 }
 
 /* Project grid */
@@ -129,7 +220,7 @@ h3 {
   transition: background 0.15s;
 }
 
-.project-card:hover { background: #1a1a1a; }
+.project-card:hover { background: var(--surface-2); }
 
 .project-card p {
   font-size: 0.875rem;
@@ -137,18 +228,26 @@ h3 {
   flex: 1;
 }
 
-.project-card--wip { opacity: 0.55; cursor: default; pointer-events: none; }
+.project-card--wip { opacity: 0.45; cursor: default; pointer-events: none; }
 
 /* Tags */
 .tag {
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-family: var(--mono);
-  color: var(--muted);
-  border: 1px solid var(--border);
+  color: var(--accent);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
   padding: 0.15em 0.5em;
-  border-radius: 2px;
-  margin-right: 0.25rem;
+  border-radius: 3px;
+  margin-right: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.tag--muted {
+  color: var(--muted);
+  background: transparent;
+  border-color: var(--border);
 }
 
 /* About */

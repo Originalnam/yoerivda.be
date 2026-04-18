@@ -9,9 +9,17 @@
 <body>
   <header>
     <nav>
-      <span class="site-name">yoerivda.be</span>
+      <a class="site-name" href="/">yoerivda.be</a>
       <ul>
-        <li><a href="#projects">Projects</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            Projects <span class="nav-arrow">▾</span>
+          </button>
+          <ul class="nav-dropdown-menu" role="menu">
+            <li role="none"><a href="projects/port-analytics/" role="menuitem">Port Analytics</a></li>
+            <li role="none"><a href="projects/ew-simulation/" role="menuitem" class="nav-dropdown-item--wip">EW Simulation <span class="wip-badge">soon</span></a></li>
+          </ul>
+        </li>
         <li><a href="#about">About</a></li>
       </ul>
     </nav>
@@ -19,7 +27,7 @@
 
   <main>
     <section id="hero">
-      <h1>Yoeri Van den Abbeele</h1>
+      <h1><span>Yoeri VdA</span></h1>
       <p class="tagline">Data visualisation &amp; interactive simulations.</p>
     </section>
 
@@ -28,15 +36,19 @@
       <div class="project-grid">
         <a class="project-card" href="projects/port-analytics/">
           <h3>Port Analytics</h3>
-          <p>Interactive maps and dashboards built on maritime vessel data. D3.js, GeoJSON.</p>
-          <span class="tag">D3.js</span>
-          <span class="tag">GeoJSON</span>
+          <p>Interactive maps and dashboards built on maritime vessel data.</p>
+          <div>
+            <span class="tag">D3.js</span>
+            <span class="tag">GeoJSON</span>
+          </div>
         </a>
-        <a class="project-card project-card--wip" href="projects/ew-simulation/">
+        <a class="project-card project-card--wip" href="projects/ew-simulation/" tabindex="-1">
           <h3>EW Simulation</h3>
           <p>Electronic warfare scenario simulator. Work in progress.</p>
-          <span class="tag">Simulation</span>
-          <span class="tag">Coming soon</span>
+          <div>
+            <span class="tag tag--muted">Simulation</span>
+            <span class="tag tag--muted">Coming soon</span>
+          </div>
         </a>
       </div>
     </section>
@@ -44,15 +56,15 @@
     <section id="about">
       <h2>About</h2>
       <p>
-        This site is a space for exploring data, visualisation, and simulation.
-        Projects are built with vanilla JS and D3.js; heavier computation runs
-        on a self-hosted Python backend when needed.
+        A space for exploring data, visualisation, and simulation.
+        Projects are built with D3.js and vanilla JS; heavier computation
+        runs on a self-hosted Python backend when needed.
       </p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; <span id="year"></span> Yoeri Van den Abbeele</p>
+    <p>&copy; <span id="year"></span> Yoeri VdA</p>
   </footer>
 
   <script src="assets/js/main.js"></script>
